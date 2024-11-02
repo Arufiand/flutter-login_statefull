@@ -12,6 +12,9 @@ class LoginScreen extends StatefulWidget{
 class LoginScreenState extends State<LoginScreen>{
   final formKey = GlobalKey<FormState>();
 
+  String email = '';
+  String password = '';
+
   @override
   Widget build(context){
     return Container(
@@ -42,6 +45,9 @@ class LoginScreenState extends State<LoginScreen>{
           return 'Please insert an valid email';
         }
       },
+      onSaved: (value){
+        password = value!;
+      },
     );
   }
   Widget passwordField(){
@@ -56,6 +62,9 @@ class LoginScreenState extends State<LoginScreen>{
           return 'Pass char must be more than 4 chars';
         }
       },
+      onSaved: (value){
+        password = value!;
+      },
     );
   }
 
@@ -64,7 +73,11 @@ class LoginScreenState extends State<LoginScreen>{
       child : const Text('Submit'),
       onPressed : () {
         // formKey.currentState?.reset(); // To reset the form
-        formKey.currentState?.validate(); // To validate the form
+        if(formKey.currentState!.validate()){
+          // To validate the form
+          formKey.currentState?.save();
+          print('email = $email password = $password');
+        }
       }
     );
   }
