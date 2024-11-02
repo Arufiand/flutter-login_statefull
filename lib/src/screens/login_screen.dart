@@ -41,7 +41,7 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin {
         labelText: 'Email Label',
         hintText: 'Email Hint',
       ),
-      validator: validateEmail,
+      validator: (value) => validateField('email', value!),
       onSaved: (value){
         password = value!;
       },
@@ -54,7 +54,7 @@ class LoginScreenState extends State<LoginScreen> with ValidationMixin {
         labelText: 'Password Label',
         hintText: 'Password Hint',
       ),
-      validator: validatePassword,
+      validator: (value) => validateField('password', value!),
       onSaved: (value){
         password = value!;
       },
